@@ -59,6 +59,6 @@ object adt:
       no exception is thrown but the case for an error is returned
     */
     def apply[V](v: V): ErrorOr[V] =
-      if v == null then ErrorOr.Error(NullPointerException()) else ErrorOr.Some(v)
+      if v == null then ErrorOr.Error(NullPointerException("argument's value is null!")) else ErrorOr.Some(v)
       
   
