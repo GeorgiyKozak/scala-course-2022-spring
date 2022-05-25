@@ -12,22 +12,12 @@ object program:
    Print all view for all user's posts if they exists
   */
 
-  //implement with flatten to unbox ErrorOr and forEach
-  //to print every PostView with print method???????
-
   def printPostsViews(): ErrorOr[List[PostView]] = ???
 
   /*
    Getting view for all user's posts if they exists
   */
-  def getPostsViews(): ErrorOr[List[ErrorOr[PostView]]] = {
-    for
-      profile   ← getUserProfile()
-      posts     ← getPosts(profile.userId)
-      postsView ← ErrorOr(posts map { post ⇒ getPostView(post) })
-      if postsView.length == 7
-    yield postsView
-  }
+  def getPostsViews(): ErrorOr[List[PostView]] = ???
 
   /*
    Getting view for a particular user's post

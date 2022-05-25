@@ -3,8 +3,8 @@ package karazin.scala.users.group.week2.and.three.quarters.homework
 import java.util.UUID
 
 // Do not forget to import custom implementation
-import karazin.scala.users.group.week2.homework.adt._
-import karazin.scala.users.group.week2.homework.model._
+import karazin.scala.users.group.week2.and.three.quarters.homework.adt._
+import karazin.scala.users.group.week2.and.three.quarters.homework.model._
 
 /*
   Dummy services
