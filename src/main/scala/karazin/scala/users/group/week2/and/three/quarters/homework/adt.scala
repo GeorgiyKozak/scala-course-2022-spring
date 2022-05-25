@@ -29,57 +29,57 @@ package karazin.scala.users.group.week2.and.three.quarters.homework
 */
 
 object adt:
-  
+
   enum ErrorOr[+V]:
-    
+
     // Added to make it compilable. Remove it.
     case DummyCase
-    
-    /* 
-      Two case must be defined: 
+
+    /*
+      Two case must be defined:
       * a case for a regular value
       * a case for an error (it should contain an actual throwable)
      */
-  
-    /* 
+
+    /*
       The method is used for defining execution pipelines
       Provide a type parameter, an argument and a result type
-      
+
       Make sure that in case of failing the method with exception
       no exception is thrown but the case for an error is returned
-    */ 
+    */
     def flatMap = ???
 
-    /* 
+    /*
       The method is used for changing the internal object
       Provide a type parameter, an argument and a result type
-      
+
       Make sure that in case of failing the method with exception
       no exception is thrown but the case for an error is returned
      */
     def map = ???
-  
-    /* 
+
+    /*
       The method is used for filtering
       Provide a type parameter, an argument and a result type
-      
+
       Make sure that in case of failing the method with exception
       no exception is thrown but the case for an error is returned
      */
     def withFilter = ???
-  
-    /* 
+
+    /*
       The method is used for getting rid of internal box
       Provide a type parameter, an argument and a result type
     */
     def flatten = ???
-    
-    /* 
+
+    /*
       The method is used for applying side effects without returning any result
       Provide a type parameter, an argument and a result type
     */
     def foreach = ???
-      
+
   // Companion object to define constructor
   object ErrorOr:
     /* 
