@@ -11,13 +11,29 @@ object program:
   /*
    Print all view for all user's posts if they exists
   */
-
-  def printPostsViews(): ErrorOr[List[PostView]] = ???
+  def printPostsViews(): ErrorOr[List[PostView]] = {
+    for
+      postView <- getPostsViews()
+    yield {
+      print(postView)
+      postView
+    }
+  }
 
   /*
    Getting view for all user's posts if they exists
   */
-  def getPostsViews(): ErrorOr[List[PostView]] = ???
+  def getPostsViews(): ErrorOr[List[PostView]] = {
+    for
+      profile   <- getUserProfile()
+      posts     <- getPosts(profile.userId)
+      postsView <- ErrorOr(posts map { post => getPostView(post) })
+    yield postsView.foldLeft(List[PostView]()) { (list, el) =>
+      el match
+        case ErrorOr.Error(ex) => list
+        case ErrorOr.Some(v)   => v :: list
+    }
+  }
 
   /*
    Getting view for a particular user's post
