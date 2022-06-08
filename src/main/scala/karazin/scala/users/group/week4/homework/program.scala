@@ -36,7 +36,7 @@ object program extends App :
     val userProfile = getUserProfile()(using singleThreadPoolContext)
     userProfile onComplete {
       case Success(profile) => {
-        getPosts(profile.userId)(using fixedThreadPoolContext) flatMap (posts: List[Post] =>
+        getPosts(profile.userId)(using fixedThreadPoolContext) map (posts: List[Post] =>
           posts foldLeft (List[PostView]()) {(acc, el) =>
           getPostView(el)(using globalContext) onComplete {
             case Success (postView: PostView) => postView :: acc
