@@ -6,7 +6,6 @@ import karazin.scala.users.group.week3.homework.model.*
 import karazin.scala.users.group.week3.homework.services.*
 import java.util.UUID
 
-import scala.util.{Success, Failure}
 
 /*
   Write test for all service in karazin.scala.users.group.week3.homework.services
@@ -18,44 +17,37 @@ import scala.util.{Success, Failure}
 
 class ServicesSuite extends munit.FunSuite :
 
-  test("getUserProfile async test") {
-    val userProfile = getUserProfile()
-    userProfile onComplete {
-      case Success(result) => assertEquals(42, 42)
-      case Failure(error)  => fail("getUserProfile failed")
-    }
-  }
-
   test("getPosts async test") {
-    val posts = getPosts(UUID.randomUUID())
-    posts onComplete {
-      case Success(result) => assertEquals(42, 42)
-      case Failure(error)  => fail("getPosts failed")
+    val id = UUID.randomUUID()
+    val posts = getPosts(id)
+    for
+      list <- posts
+    yield list foreach { post => assertEquals(post.userId, id)
     }
   }
 
   test("getComments async test") {
-    val comments = getComments(UUID.randomUUID())
-    comments onComplete {
-      case Success(result) => assertEquals(42, 42)
-      case Failure(error)  => fail("getComments failed")
-    }
+    val id = UUID.randomUUID()
+    val comments = getComments(id)
+    for
+      list <- comments
+    yield list foreach { comment => assertEquals(comment.userId, id) }
   }
 
   test("getLikes async test") {
-    val likes = getLikes(UUID.randomUUID())
-    likes onComplete {
-      case Success(result) => assertEquals(42, 42)
-      case Failure(error)  => fail("getLikes failed")
-    }
+    val id = UUID.randomUUID()
+    val likes = getLikes(id)
+    for
+      list <- likes
+    yield list foreach { like => assertEquals(like.userId, id) }
   }
 
   test("getShares async test") {
-    val shares = getShares(UUID.randomUUID())
-    shares onComplete {
-      case Success(result) => assertEquals(42, 42)
-      case Failure(error)  => fail("getShares failed")
-    }
+    val id = UUID.randomUUID()
+    val shares = getShares(id)
+    for
+      list <- shares
+    yield list foreach { share => assertEquals(share.userId, id) }
   }
 
 

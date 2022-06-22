@@ -6,8 +6,6 @@ import karazin.scala.users.group.week3.homework.model.*
 import karazin.scala.users.group.week3.homework.program.*
 import java.util.UUID
 
-import scala.util.{Success, Failure}
-
 
 /*
   Write test for all programs in karazin.scala.users.group.week3.homework.program
@@ -17,12 +15,15 @@ import scala.util.{Success, Failure}
     • https://scalameta.org/munit/docs/assertions.html
  */
 
-class ProgramSuite extends munit.FunSuite:
-  
+class ProgramSuite extends munit.FunSuite :
+
   test("getPostView async test") {
-      val postView = getPostView(Post(UUID.randomUUID(),UUID.randomUUID()))
-      postView onComplete {
-        case Success(result) => assertEquals(42, 42)
-        case Failure(error)  => fail("getPostView failed")
-      }
+    val userId = UUID.randomUUID()
+    val postId = UUID.randomUUID()
+    val postView = getPostView(Post(userId, postId))
+    postView foreach { view =>
+      view match
+        case PostView(Post(uid, pid), _ :: Nil, _ :: Nil, _ :: Nil) => assertEquals(uid, userId); assertEquals(pid, postId);
+        case _                                                      => fail("getPostView failed!")
+    }
   }
