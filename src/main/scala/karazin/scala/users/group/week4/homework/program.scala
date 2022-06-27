@@ -35,8 +35,8 @@ object program extends App :
 
     val userProfile = getUserProfile()(using singleThreadPoolContext)
     for
-      profile <- userProfile
-      posts <- getPosts(profile.userId)(using fixedThreadPoolContext)
+      profile   <- userProfile
+      posts     <- getPosts(profile.userId)(using fixedThreadPoolContext)
       postsView = posts map { post => getPostView(post) }
       postViews <- Future sequence {
         postsView
@@ -58,13 +58,13 @@ object program extends App :
       ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(2))
 
     val getCommentsService = getComments(post.postId)(using singleThreadPoolContext)
-    val getLikesService = getLikes(post.postId)(using fixedThreadPoolContext)
-    val getSharesService = getShares(post.postId)(using fixedThreadPoolContext)
+    val getLikesService    = getLikes(post.postId)(using fixedThreadPoolContext)
+    val getSharesService   = getShares(post.postId)(using fixedThreadPoolContext)
 
     for
       comments ← getCommentsService
-      likes ← getLikesService
-      shares ← getSharesService
+      likes    ← getLikesService
+      shares   ← getSharesService
     yield {
       singleThreadPoolContext.shutdown()
       fixedThreadPoolContext.shutdown()

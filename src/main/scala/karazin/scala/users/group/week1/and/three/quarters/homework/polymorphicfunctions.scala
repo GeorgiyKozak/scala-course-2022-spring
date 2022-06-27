@@ -7,6 +7,7 @@ object polymorphicfunctions extends App:
   */
 
   val `I₍₂,₄₎⁴`: Any = ???
+
   val `(f ० g ० h ० i)(x)`: Any = ???
 
 end polymorphicfunctions

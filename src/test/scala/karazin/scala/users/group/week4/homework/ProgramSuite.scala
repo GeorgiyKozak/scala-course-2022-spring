@@ -46,7 +46,7 @@ class ProgramSuite extends munit.FunSuite :
     postView foreach { view =>
       view match
         case PostView(Post(uid, pid), _ :: Nil, _ :: Nil, _ :: Nil) => assertEquals(uid, userId); assertEquals(pid, postId);
-        case _ => fail("getPostView failed!")
+        case _                                                      => fail("getPostView failed!")
     }
   }
 
@@ -57,7 +57,7 @@ class ProgramSuite extends munit.FunSuite :
     yield list foreach { view =>
       view match
         case PostView(Post(uid, pid), _ :: Nil, _ :: Nil, _ :: Nil) => assertEquals(uid, UUID.randomUUID()); assertEquals(pid, UUID.randomUUID());
-        case _ => fail("getPostViews failed!")
+        case _                                                      => fail("getPostViews failed!")
     }
   }
 
