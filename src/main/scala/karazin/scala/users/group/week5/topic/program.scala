@@ -7,6 +7,3 @@ object program:
   def max[T](left: T, right: T)(using order: Order[T]): T =
     if order.compare(left, right) == 1 then left
     else right
-
-
-
